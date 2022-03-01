@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>new todo app</title>
+    <!-- font awesome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- min css -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+         <!-- new task area -->
+        <h1 class="main_title">MY TO-DO LISTS</h1>
+        <h3 class="sub_title">New Task Creation</h3>
+        <div class="separator"></div>
+
+
+        <form  id="form">
+            <div class="task_name">
+                <label for="name">Name:</label>
+                <input name="name" id="name" placeholder="Add a new task" type="text">
+            </div>
+            <div class="task_priority">
+                <label for="priority">Priority:</label>
+                <select name="priority" id="priority">
+                    <option disabled>Select One</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </div>
+            <div class="task_data">
+                <label for="date">Date:</label>
+                <input id="date" name="date" type="date">
+            </div>
+            <div class="task_submit">
+                <input value="Add Now" type="submit">
+            </div>
+        </form>
+         <!-- task management area -->
+        <h3 class="sub_title">Task Management</h3>
+        <div class="separator"></div>
+        <div class="tools">
+            <div class="search">
+                <label for="s_name">Search</label>
+                <input id="s_name" placeholder="Search by name" type="text">
+            </div>
+            <div class="filter">
+                <label for="filter">Filter</label>
+               <select name="filter" id="filter">
+                   <option value="all">All</option>
+                   <option value="complete">Complete</option>
+                   <option value="incomplete">Incomplete</option>
+                   <option value="today">Today</option>
+                   <option value="high">High Priority</option>
+                   <option value="medium">Medium Priority</option>
+                   <option value="low">Low Priority</option>
+               </select>
+            </div>
+            <div class="sort">
+                <label for="sort">Sort</label>
+               <select name="sort" id="sort">
+                   <option value="newest">Newest</option>
+                   <option value="oldest">Oldest</option>
+               </select>
+            </div>
+            <div class="by_date">
+                <label for="by_date">By Date</label>
+                <input type="date" name="by_date" id="by_date">
+            </div>
+        </div>
+        <!-- table area -->
+        <table>
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Task Name</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <tr>
+                    <td>0</td>
+                    <td>fahim</td>
+                    <td>high</td>
+                    <td>Incomplete</td>
+                    <td>2022-02-28</td>
+                    <td>
+                        <button id="delete"><i class="fa-solid fa-trash"></i></button>
+                        <button id="check"><i class="fa-solid fa-square-check"></i></button>
+                        <button id="edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </main>
+    <script src="./app.js"></script>
+</body>
+</html>
