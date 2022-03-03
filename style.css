@@ -153,3 +153,19 @@ td button i{
 td button:hover i{
     color: hsl(0deg 100% 50%);
 }
+
+/* dynamic input field class */
+.dynamic_input{
+    border: 1px solid #0f90f346;
+    outline: none;
+    background-color: #f0f2f5;
+    height: 25px;
+    border-radius: 3px;
+}
+.dynamic_select{
+    border: 1px solid #0f90f346;
+    outline: none;
+    background-color: #f0f2f5;
+    height: 25px;
+    border-radius: 3px;
+}
