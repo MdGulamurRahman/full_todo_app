@@ -3,12 +3,157 @@ function getById(id){
 }
 const form = getById("form");
 const tbody = getById("tbody");
+const searchField = getById("s_name")
+const filterField = getById("filter");
+const sortField = getById("sort");
+const by_date = getById("by_date");
 const date = getById("date");
 const today = new Date().toISOString().slice(0, 10);
 date.value = today;
 
 
-
+//searching correct vule
+searchField.addEventListener("input", function(e){
+    filterField.selectedIndex = 0;
+    tbody.innerHTML = ""
+    const searchTerm = this.value;
+    const getTask = getTaskFromLocalStorage();
+    let index = 0;
+    getTask.forEach(task =>{
+        if(task.name.toLowerCase().includes(searchTerm.toLowerCase())){
+            index++;
+            displayToUi(task, index)
+        }
+    })
+})
+//filtering area
+filterField.addEventListener("change", function(e){
+    searchField.value = ""; 
+    tbody.innerHTML = ""
+    const filterFieldTerm = this.value;
+    const getTask = getTaskFromLocalStorage();
+    switch(filterFieldTerm){
+        case "all":
+            getTask.forEach((task, i) =>{
+                displayToUi(task, i + 1)
+            })
+            break;
+        case "complete":
+            let index1 = 0;
+            getTask.forEach(task =>{
+                if(task.status === "complete"){
+                    index1++
+                    displayToUi(task, index1)
+                }
+            })
+            break;
+        case "incomplete":
+            let index2 = 0;
+            getTask.forEach(task =>{
+                if(task.status === "incomplete"){
+                    index2++;
+                    displayToUi(task, index2)
+                }
+            })
+            break;
+        case "today":
+            let index3 = 0;
+            getTask.forEach(task =>{
+                if(task.date === today){
+                    index3++
+                    displayToUi(task, index3)
+                }
+            })
+            break;
+        case "high":
+            let index4 = 0;
+            getTask.forEach(task =>{
+                if(task.priority === "high"){
+                    index4++;
+                displayToUi(task, index4)
+                }
+                
+            })
+            break;
+        case "medium":
+            let index5 = 0;
+            getTask.forEach(task =>{
+                if(task.priority === "medium"){
+                    index5++;
+                displayToUi(task, index5)
+                }
+                
+            })
+            break;
+        case "low":
+            let index6 = 0;
+            getTask.forEach(task =>{
+                if(task.priority === "low"){
+                    index6++;
+                displayToUi(task, index6)
+                }
+                
+            })
+            break;
+        
+    }
+})
+//sorting area
+sortField.addEventListener("change", function(e){
+    tbody.innerHTML = "";
+    filterField.selectedIndex = 0;
+    searchField.value = ""
+    const sortTerm = this.value;
+    const getTask = getTaskFromLocalStorage();
+    if(sortTerm === "newest"){
+        getTask.sort((a,b)=>{
+            if(new Date(a.date) > new Date(b.date)){
+                return -1;
+            }else if(new Date(a.date) < new Date(b.date)){
+                return 1;
+            }else{
+                return 0;
+            }
+        })
+    }else{
+        getTask.sort((a,b)=>{
+            if(new Date(a.date) > new Date(b.date)){
+                return 1;
+            }else if(new Date(a.date) < new Date(b.date)){
+                return -1;
+            }else{
+                return 0;
+            }
+        })
+    }
+    getTask.forEach((task, i)=>{
+        displayToUi(task, i + 1);
+    })
+})
+//find with date
+by_date.addEventListener("change", function(e){
+    const ByDateTerm = this.value;
+    tbody.innerHTML = "";
+    filterField.selectedIndex = 0;
+    searchField.value = ""
+    const getTask = getTaskFromLocalStorage();
+    if(ByDateTerm){
+        let index = 0;
+        getTask.forEach(task =>{
+            if(task.date === ByDateTerm){
+                index++;
+                displayToUi(task, index)
+            }
+        })
+    }else{
+        getTask.forEach(task, i =>{
+            if(task.date === ByDateTerm){
+                displayToUi(task, i + 1)
+            }
+        })
+    }
+    
+})
 
 form.addEventListener("submit", function(e){
     e.preventDefault();
