@@ -30,6 +30,7 @@
                     <option value="high">High</option>
                     <option value="medium">Medium</option>
                     <option value="low">Low</option>
+
                 </select>
             </div>
             <div class="task_data">
@@ -72,10 +73,41 @@
                 <input type="date" name="by_date" id="by_date">
             </div>
         </div>
+        <!-- bulk option -->
+        <div id="bulk_action" class="bulk_action">
+            <div class="action_group">
+                <button id="bulk_delete">Delete</button>
+                <select name="priority" id="bulk_priority">
+                    <option disabled selected>Change priority</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+
+                <select name="status" id="bulk_status">
+                    <option disabled selected>Change Status</option>
+                    <option value="complete">Complete</option>
+                    <option value="incomplete">Incomplete</option>
+                </select>
+
+                <div class="edit">
+                    <input placeholder="Modify the name" type="text" id="edit_inp">
+                    <select name="" id="edit_sel">
+                        <option value="name">Name</option>
+                        <option value="date">Date</option>
+                    </select>
+                </div>
+            </div>
+            <button class="dismiss">X</button>
+        </div>
         <!-- table area -->
         <table>
             <thead>
                 <tr>
+                    <th>
+                        <input id="all_select" type="checkbox"> All
+                        <label for="all_select"></label>
+                    </th>
                     <th>No.</th>
                     <th>Task Name</th>
                     <th>Priority</th>
@@ -104,6 +136,5 @@
     </main>
     <script src="https://cdn.jsdelivr.net/npm/uuid@latest/dist/umd/uuidv4.min.js"></script>
     <script src="./app.js"></script>
-    <!-- <script src="./practice.js"></script> -->
 </body>
 </html>
